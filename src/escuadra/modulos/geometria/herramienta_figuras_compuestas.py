@@ -72,3 +72,8 @@ class HerramientaFigurasCompuestas(Herramienta):
     def ejecutar(self, figuras):
         # Método requerido por algunos tests
         return calcular_area_compuesta(figuras)
+def calcular_volumen(figuras):
+    """
+    Calcula el volumen total de una figura compuesta.
+    """
+    return calcular_volumen_compuesto(figuras)
