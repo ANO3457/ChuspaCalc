@@ -60,20 +60,15 @@ class TestCSVParser:
             os.unlink(temp_path)
 
     def test_parse_csv_vacio(self):
-        """Verifica el parseo de un CSV vacío"""
+        """Verifica que parse_csv lanza ValueError con un archivo vacío"""
         with tempfile.NamedTemporaryFile(mode='w', suffix='.csv', delete=False) as f:
             f.write("")
             temp_path = f.name
 
         try:
-            resultado = parse_csv(temp_path, has_header=True)
-            assert resultado == []
-        except StopIteration:
-            # Si el código original lanza StopIteration, lo capturamos y consideramos que es un bug
-            # Lo marcamos como esperado
-            import warnings
-            warnings.warn("parse_csv lanza StopIteration con archivo vacío", UserWarning)
-            assert True
+            with pytest.raises(ValueError) as excinfo:
+                parse_csv(temp_path, has_header=True)
+            assert "vacío" in str(excinfo.value)
         finally:
             os.unlink(temp_path)
 
