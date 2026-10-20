@@ -38,22 +38,23 @@ def calcular_subred(ip: str, prefijo_cidr: str) -> dict:
     broadcast_address = red.broadcast_address
     netmask = red.netmask
 
-    hosts = list(red.hosts())
-
-    if len(hosts) > 0:
-        primer_host = hosts[0]
-        ultimo_host = hosts[-1]
-        total_hosts = len(hosts)
-    else:
-        primer_host = None
-        ultimo_host = None
+    # Para prefijos 31 y 32 no hay hosts asignables según los criterios del issue
+    if red.prefixlen >= 31:
+        primer_host = "N/A"
+        ultimo_host = "N/A"
         total_hosts = 0
+    else:
+        # Sumamos/restamos enteros sobre las direcciones de red y broadcast
+        primer_host = str(network_address + 1)
+        ultimo_host = str(broadcast_address - 1)
+        total_hosts = red.num_addresses - 2
 
     return {
         "red": str(network_address),
         "broadcast": str(broadcast_address),
         "mascara": str(netmask),
-        "primer_host": str(primer_host) if primer_host else "N/A",
-        "ultimo_host": str(ultimo_host) if ultimo_host else "N/A",
+        "primer_host": primer_host,
+        "ultimo_host": ultimo_host,
         "total_hosts": total_hosts,
     }
+    
