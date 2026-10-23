@@ -20,7 +20,6 @@ El script genera las entradas del changelog a partir de los commits desde el úl
 ## [Unreleased]
 
 ### Added
-- feat(conversor_temperatura): agregadas conversiones directas entre Fahrenheit y Kelvin con validación del cero absoluto (#1160, #1245)
 - feat(conversor_longitud): agregado módulo de conversión de longitud
 - feat(herramienta_calculo_area): agregada herramienta de cálculo de áreas
 - feat(caida_tension): agregado cálculo de caída de tensión
