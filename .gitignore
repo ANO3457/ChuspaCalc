@@ -39,7 +39,6 @@ out/
 target/
 *.egg-info/
 .eggs/
-temp_auto_push.bat
 
 # Testing / coverage
 coverage/
@@ -58,6 +57,7 @@ htmlcov/
 .ipynb_checkpoints/
 
 # IDEs
+.vscode/
 .idea/
 *.swp
 *.swo
@@ -81,5 +81,4 @@ id_rsa.pub
 *.o
 *.exe
 *.dll
-*.so.gitignore
-branch_structure.json
+*.so
